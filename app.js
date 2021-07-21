@@ -1,28 +1,7 @@
-// Click counter
-let clicks = 0;
-
 // Random number for map size
 let getRandomNumber = function(size) {
     return Math.floor(Math.random() * size);
 };
-
-// Treasure coordinates
-let width = 400;
-let height = 400;
-
-let target = {
-    x: getRandomNumber(width),
-    y: getRandomNumber(height)
-};
-
-// Events
-$('#map').click(function(event) {
-    clicks++;
-    // Display a message how close or far the player is from the treasure
-    let distance = getDistance(event, target);
-    let distanceHint = getDistanceHint(distance);
-    $('#distance').text(distanceHint);
-});
 
 // The distance between the click and the treasure
 let getDistance = function(event, target) {
@@ -50,3 +29,28 @@ let getDistanceHint = function(distance) {
     }
 };
 
+// Click counter
+let clicks = 0;
+
+// Treasure coordinates
+let width = 400;
+let height = 400;
+
+let target = {
+    x: getRandomNumber(width),
+    y: getRandomNumber(height)
+};
+
+// Events
+$('#map').click(function(event) {
+    clicks++;
+    
+    // Display a message how close or far the player is from the treasure
+    let distance = getDistance(event, target);
+    let distanceHint = getDistanceHint(distance);
+    $('#distance').text(distanceHint);
+
+    if(distance < 8) {
+        alert(`Found the treasure in ${clicks} clicks!`);
+    }
+});
