@@ -18,6 +18,10 @@ let target = {
 // Events
 $('#map').click(function(event) {
     clicks++;
+    // Display a message how close or far the player is from the treasure
+    let distance = getDistance(event, target);
+    let distanceHint = getDistanceHint(distance);
+    $('#distance').text(distanceHint);
 });
 
 // The distance between the click and the treasure
@@ -28,3 +32,21 @@ let getDistance = function(event, target) {
 };
 
 // How close to the treasure the player
+let getDistanceHint = function(distance) {
+    if(distance < 10) {
+        return 'Boiling hot!';
+    } else if(distance < 20) {
+        return 'Really hot';
+    } else if(distance < 40) {
+        return 'Hot';
+    } else if(distance < 80) {
+        return 'Warm';
+    } else if(distance < 160) {
+        return 'Cold';
+    } else if(distance < 320) {
+        return 'Really cold';
+    } else {
+        return 'Freezing!';
+    }
+};
+
